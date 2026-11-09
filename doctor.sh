@@ -2,7 +2,7 @@
 # Check links, sync state of both repos, and required tools.
 REPO="$(cd "$(dirname "$0")" && pwd)"
 TARGET="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
-MEM="$HOME/claude-memory"
+MEM="$HOME/workspace/claude-memory"
 rc=0
 
 for f in CLAUDE.md settings.json agents commands skills; do
@@ -25,5 +25,5 @@ check_repo "$MEM"
 [ "$(git -C "$MEM" config core.hooksPath 2>/dev/null)" = "hooks" ] \
   || { echo "FAIL memory pre-commit hook not enabled"; rc=1; }
 command -v gitleaks >/dev/null || { echo "FAIL gitleaks missing: memory commits will be refused"; rc=1; }
-[ -n "${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-}" ] || echo "WARN CLAUDE_AUTOCOMPACT_PCT_OVERRIDE not exported in this shell"
+[ -n "${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-}" ] || echo "WARN CLAUDE_AUTOCOMPACT_PCT_OVERRIDE not exported in this shell (set it in ~/.zshenv)"
 exit $rc

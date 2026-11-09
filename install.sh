@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
-# Link this repo into ~/.claude and set up ~/claude-memory. Safe to run many times.
+# Link this repo into ~/.claude and set up ~/workspace/claude-memory. Safe to run many times.
 set -eu
 
 REPO="$(cd "$(dirname "$0")" && pwd)"
 TARGET="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
-MEM="$HOME/claude-memory"
+# Fixed path: settings.json (autoMemoryDirectory, hooks) uses the same one.
+MEM="$HOME/workspace/claude-memory"
 # Set CLAUDE_MEMORY_URL to an empty string to skip the memory clone.
 MEM_URL="${CLAUDE_MEMORY_URL-git@github.com:m4nch0t/claude-memory.git}"
 mkdir -p "$TARGET"
@@ -28,12 +29,5 @@ if [ -d "$MEM/.git" ]; then
   chmod +x "$MEM/hooks/pre-commit" "$MEM/sync.sh"
   git -C "$MEM" config core.hooksPath hooks
 fi
-
-# settings.json "env" is not always honored for auto-compact: export it too.
-for rc in "$HOME/.zshrc" "$HOME/.bashrc"; do
-  [ -f "$rc" ] || continue
-  grep -q CLAUDE_AUTOCOMPACT_PCT_OVERRIDE "$rc" \
-    || echo 'export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=50' >> "$rc"
-done
 
 sh "$REPO/doctor.sh" || true

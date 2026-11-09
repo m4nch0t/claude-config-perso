@@ -1,3 +1,5 @@
 .DS_Store
 *.backup.*
 .credentials.json
+# Claude Code syncs built-in skills here through the ~/.claude/skills symlink.
+skills/synced/
