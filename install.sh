@@ -29,11 +29,4 @@ if [ -d "$MEM/.git" ]; then
   git -C "$MEM" config core.hooksPath hooks
 fi
 
-# settings.json "env" is not always honored for auto-compact: export it too.
-for rc in "$HOME/.zshrc" "$HOME/.bashrc"; do
-  [ -f "$rc" ] || continue
-  grep -q CLAUDE_AUTOCOMPACT_PCT_OVERRIDE "$rc" \
-    || echo 'export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=50' >> "$rc"
-done
-
 sh "$REPO/doctor.sh" || true

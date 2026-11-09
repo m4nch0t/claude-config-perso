@@ -7,6 +7,8 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends jq shellcheck make gitleaks \
  && rm -rf /var/lib/apt/lists/*
 USER agent
+# settings.json "env" is not always honored for auto-compact: set it in the image too.
+ENV CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=50
 # CI passes the commit SHA, so the image matches the commit that triggered it.
 ARG CONFIG_REF=main
 # HTTPS clone: no SSH key in the image. The memory repo is private, so it is

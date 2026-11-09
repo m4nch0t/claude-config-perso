@@ -25,5 +25,5 @@ check_repo "$MEM"
 [ "$(git -C "$MEM" config core.hooksPath 2>/dev/null)" = "hooks" ] \
   || { echo "FAIL memory pre-commit hook not enabled"; rc=1; }
 command -v gitleaks >/dev/null || { echo "FAIL gitleaks missing: memory commits will be refused"; rc=1; }
-[ -n "${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-}" ] || echo "WARN CLAUDE_AUTOCOMPACT_PCT_OVERRIDE not exported in this shell"
+[ -n "${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-}" ] || echo "WARN CLAUDE_AUTOCOMPACT_PCT_OVERRIDE not exported in this shell (set it in ~/.zshenv)"
 exit $rc
