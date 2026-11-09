@@ -1,21 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "model": "opusplan",
-  "effortLevel": "medium",
-  "permissions": {
-    "defaultMode": "auto"
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"
   },
   "attribution": {
     "commit": "",
     "pr": ""
   },
-  "env": {
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"
+  "permissions": {
+    "defaultMode": "auto"
   },
-  "autoMemoryDirectory": "~/workspace/claude-memory",
-  "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
-  },
+  "model": "opusplan",
   "hooks": {
     "SessionStart": [
       {
@@ -39,6 +34,20 @@
       }
     ]
   },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "effortLevel": "medium",
   "tui": "fullscreen",
+  "autoMemoryDirectory": "~/workspace/claude-memory",
   "theme": "dark"
 }
