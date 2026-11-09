@@ -6,9 +6,9 @@ agents, commands and skills.
 ## Install on a machine
 
 ```sh
-git clone git@github.com:m4nch0t/claude-config-perso.git ~/.claude-config
-sh ~/.claude-config/install.sh   # links files into ~/.claude, clones ~/claude-memory
-sh ~/.claude-config/doctor.sh    # checks links, repo sync, tools
+git clone git@github.com:m4nch0t/claude-config-perso.git ~/workspace/claude-config-perso
+sh ~/workspace/claude-config-perso/install.sh   # links files into ~/.claude, clones ~/workspace/claude-memory
+sh ~/workspace/claude-config-perso/doctor.sh    # checks links, repo sync, tools
 ```
 
 The memory repo (`m4nch0t/claude-memory`) is private. `install.sh` clones it
@@ -35,6 +35,6 @@ public. To use memory inside a sandbox, use a fine-grained token limited to
 `claude-memory` (contents: read and write):
 
 ```sh
-git clone https://github.com/m4nch0t/claude-memory.git ~/claude-memory
-sh ~/.claude-config/install.sh
+git clone https://github.com/m4nch0t/claude-memory.git ~/workspace/claude-memory
+sh ~/workspace/claude-config-perso/install.sh
 ```

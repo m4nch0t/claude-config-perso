@@ -12,7 +12,7 @@
   "env": {
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"
   },
-  "autoMemoryDirectory": "~/claude-memory",
+  "autoMemoryDirectory": "~/workspace/claude-memory",
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true
   },
@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "for r in \"$HOME/.claude-config\" \"$HOME/claude-memory\"; do git -C \"$r\" pull --ff-only -q >/dev/null 2>&1; done; true"
+            "command": "cfg=\"$(dirname \"$(readlink \"$HOME/.claude/settings.json\")\")\"; for r in \"$cfg\" \"$HOME/workspace/claude-memory\"; do git -C \"$r\" pull --ff-only -q >/dev/null 2>&1; done; true"
           }
         ]
       }
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"$HOME/claude-memory/sync.sh\" >/dev/null 2>&1 || true"
+            "command": "sh \"$HOME/workspace/claude-memory/sync.sh\" >/dev/null 2>&1 || true"
           }
         ]
       }

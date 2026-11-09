@@ -14,6 +14,6 @@ ARG CONFIG_REF=main
 # HTTPS clone: no SSH key in the image. The memory repo is private, so it is
 # not cloned here: that would need a token at build time and put private data
 # in a public image. Clone it at runtime (see README).
-RUN git clone -q https://github.com/m4nch0t/claude-config-perso.git "$HOME/.claude-config" \
- && git -C "$HOME/.claude-config" reset -q --hard "$CONFIG_REF" \
- && CLAUDE_MEMORY_URL='' sh "$HOME/.claude-config/install.sh"
+RUN git clone -q https://github.com/m4nch0t/claude-config-perso.git "$HOME/workspace/claude-config-perso" \
+ && git -C "$HOME/workspace/claude-config-perso" reset -q --hard "$CONFIG_REF" \
+ && CLAUDE_MEMORY_URL='' sh "$HOME/workspace/claude-config-perso/install.sh"

@@ -2,7 +2,7 @@
 # Check links, sync state of both repos, and required tools.
 REPO="$(cd "$(dirname "$0")" && pwd)"
 TARGET="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
-MEM="$HOME/claude-memory"
+MEM="$HOME/workspace/claude-memory"
 rc=0
 
 for f in CLAUDE.md settings.json agents commands skills; do
