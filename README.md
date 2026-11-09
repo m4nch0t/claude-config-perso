@@ -1,0 +1,34 @@
+# claude-config-perso
+
+My personal Claude Code configuration: global `CLAUDE.md`, `settings.json`,
+agents, commands and skills.
+
+## Install on a machine
+
+```sh
+git clone git@github.com:m4nch0t/claude-config-perso.git ~/.claude-config
+sh ~/.claude-config/install.sh   # links files into ~/.claude, clones ~/claude-memory
+sh ~/.claude-config/doctor.sh    # checks links, repo sync, tools
+```
+
+The memory repo (`m4nch0t/claude-memory`) is private. `install.sh` clones it
+over SSH. Set `CLAUDE_MEMORY_URL=` (empty) to skip it.
+
+## Docker Sandbox image
+
+GitHub Actions builds `sandbox/Dockerfile` on each push to `main` and every
+Monday, for `linux/amd64` and `linux/arm64`:
+
+```sh
+docker pull ghcr.io/m4nch0t/claude-sandbox:latest
+docker sandbox run --template ghcr.io/m4nch0t/claude-sandbox:latest claude
+```
+
+The image has this config but not the memory repo, because the image is
+public. To use memory inside a sandbox, use a fine-grained token limited to
+`claude-memory` (contents: read and write):
+
+```sh
+git clone https://github.com/m4nch0t/claude-memory.git ~/claude-memory
+sh ~/.claude-config/install.sh
+```
